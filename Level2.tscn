@@ -1,12 +1,14 @@
 [gd_scene load_steps=27 format=3 uid="uid://lh6ca1c2atfv"]
 
-[ext_resource type="Texture2D" uid="uid://bov85at6v8fyr" path="res://Assets/cave_tileset.png" id="1_0epn8"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_35tc3"]
 [ext_resource type="Texture2D" uid="uid://6ssh6shuvni2" path="res://Assets/Worm.png" id="2_xh61s"]
 [ext_resource type="Script" path="res://Player/Camera.gd" id="3_a15ja"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1xxqa"]
+load_path = "res://.godot/imported/cave_tileset.png-39cb964e1de3b3ca3621d956c611c341.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ic6vc"]
-texture = ExtResource("1_0epn8")
+texture = SubResource("CompressedTexture2D_1xxqa")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -181,7 +183,7 @@ size = Vector2(89, 76)
 size = Vector2(1152, 50)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8nt10"]
-texture = ExtResource("1_0epn8")
+texture = SubResource("CompressedTexture2D_1xxqa")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -374,7 +376,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_8nt10")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lk4q6"]
-texture = ExtResource("1_0epn8")
+texture = SubResource("CompressedTexture2D_1xxqa")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 2:1/0 = 0

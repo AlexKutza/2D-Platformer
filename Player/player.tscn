@@ -98,9 +98,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_10k1j")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,17 +118,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4ctt"]
-size = Vector2(89, 76)
+size = Vector2(350, 248)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_2l1k3")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wa2gt")
-animation = &"Jump"
-frame = 2
-frame_progress = 0.0213472
+animation = &"Fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 10)
 shape = SubResource("RectangleShape2D_o4ctt")

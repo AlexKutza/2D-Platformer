@@ -9,7 +9,7 @@ func _ready():
 func _physics_process(_delta):
 	player = get_node_or_null("/root/Game/Player")
 	if player != null:
-		zoom = Vector2(1.0,1.0)
+		zoom = Vector2(0.3,0.3)
 		global_position = player.global_position
 	else:
 		zoom = Vector2(1,1)
