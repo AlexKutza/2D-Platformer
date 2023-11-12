@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://drr07lhstr5gw"]
+
+[ext_resource type="Texture2D" uid="uid://dfwwfyig4lxr5" path="res://Assets/portal.png" id="1_dfvb3"]
+[ext_resource type="Script" path="res://Levels/Portal.gd" id="2_ls6b0"]
+
+[sub_resource type="GDScript" id="GDScript_0o3xn"]
+script/source = "extends Area2D
+
+"
+
+[node name="Portal" type="Sprite2D"]
+position = Vector2(19597, 3215)
+scale = Vector2(0.531308, 0.531308)
+texture = ExtResource("1_dfvb3")
+script = ExtResource("2_ls6b0")
+
+[node name="Exit_to_2" type="Area2D" parent="."]
+position = Vector2(-69.6387, 73.4033)
+scale = Vector2(1.88215, 1.88215)
+script = SubResource("GDScript_0o3xn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Exit_to_2"]
+polygon = PackedVector2Array(-133, -469, -269, -52.9998, -265, 187, -153, 371, 111, 435, 279, 263, 359, -117, 303, -441)
+
+[connection signal="body_entered" from="Exit_to_2" to="." method="_on_exit_to_2_body_entered"]

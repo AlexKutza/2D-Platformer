@@ -1,0 +1,134 @@
+[gd_scene load_steps=19 format=3 uid="uid://dxt1jwrstwcll"]
+
+[ext_resource type="Script" path="res://Enemies/Spider.gd" id="1_vbq85"]
+[ext_resource type="Texture2D" uid="uid://x5j7ddlp2oia" path="res://Assets/Spider.png" id="2_pkjqu"]
+[ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="3_dus7i"]
+[ext_resource type="Script" path="res://Enemies/Spider_Move.gd" id="4_a6onl"]
+[ext_resource type="Script" path="res://Enemies/Spider_Attack.gd" id="5_lrjm4"]
+[ext_resource type="Script" path="res://Enemies/Spider_Die.gd" id="6_0hkp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jttf5"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(0, 666, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvjby"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(666, 666, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qoil"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(1332, 666, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xuu0"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(0, 1332, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw5pf"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(666, 1332, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68mxb"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(1332, 1332, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w7r6"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(1998, 1332, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjpke"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(0, 0, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j0tf"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(666, 0, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiswe"]
+atlas = ExtResource("2_pkjqu")
+region = Rect2(1332, 0, 666, 666)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i564x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jttf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvjby")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0qoil")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xuu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw5pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68mxb")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_8w7r6")
+}],
+"loop": false,
+"name": &"Dying",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjpke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j0tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiswe")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rky2"]
+size = Vector2(370, 243)
+
+[node name="Spider" type="CharacterBody2D"]
+script = ExtResource("1_vbq85")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i564x")
+animation = &"Dying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, -44.5)
+shape = SubResource("RectangleShape2D_4rky2")
+
+[node name="Attack" type="RayCast2D" parent="."]
+position = Vector2(0, -50)
+target_position = Vector2(241, 1)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_dus7i")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("4_a6onl")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_lrjm4")
+
+[node name="Timer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("6_0hkp8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

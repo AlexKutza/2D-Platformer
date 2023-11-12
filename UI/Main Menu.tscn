@@ -1,0 +1,169 @@
+[gd_scene load_steps=14 format=3 uid="uid://bngwoxsa05fnr"]
+
+[ext_resource type="Script" path="res://UI/Main Menu.gd" id="1_26aei"]
+[ext_resource type="Texture2D" uid="uid://dw5h8c0l2egye" path="res://Assets/Untitled-Artwork (39).png" id="1_dibk6"]
+[ext_resource type="Texture2D" uid="uid://dfwwfyig4lxr5" path="res://Assets/portal.png" id="2_odc5p"]
+[ext_resource type="FontFile" uid="uid://cfh80aue23hb8" path="res://UI/theme.tres" id="3_v71jq"]
+[ext_resource type="Texture2D" uid="uid://b2d06uu7srw0t" path="res://Assets/wormy.png" id="4_3m5lr"]
+[ext_resource type="AudioStream" uid="uid://cl2afs1epnod8" path="res://Assets/menu.wav" id="6_6geiu"]
+
+[sub_resource type="Theme" id="Theme_8w5t2"]
+default_font_size = 100
+Label/fonts/font = ExtResource("3_v71jq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr1k5"]
+bg_color = Color(0.027451, 0.203922, 0.243137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r623y"]
+bg_color = Color(0.027451, 0.203922, 0.243137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo7p8"]
+bg_color = Color(0.258824, 0.105882, 0.282353, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_475c6"]
+bg_color = Color(0.027451, 0.203922, 0.243137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm8ol"]
+bg_color = Color(0.027451, 0.203922, 0.243137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_7118w"]
+default_font_size = 35
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("3_v71jq")
+Button/styles/disabled = SubResource("StyleBoxFlat_fr1k5")
+Button/styles/focus = SubResource("StyleBoxFlat_r623y")
+Button/styles/hover = SubResource("StyleBoxFlat_jo7p8")
+Button/styles/normal = SubResource("StyleBoxFlat_475c6")
+Button/styles/pressed = SubResource("StyleBoxFlat_pm8ol")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_26aei")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 657.0
+color = Color(0.00392157, 0.101961, 0.129412, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(259, 307)
+scale = Vector2(0.1, 0.1)
+amount = 16
+lifetime = 3.0
+speed_scale = 0.5
+texture = ExtResource("1_dibk6")
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 695.03
+initial_velocity_max = 829.79
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+anim_speed_min = 10.0
+anim_speed_max = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(242, 328)
+scale = Vector2(0.261108, 0.261108)
+texture = ExtResource("2_odc5p")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 81.0
+offset_right = 498.0
+offset_bottom = 264.0
+grow_horizontal = 2
+theme = SubResource("Theme_8w5t2")
+text = "WORM ESCAPE"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -54.5
+offset_right = 312.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7118w")
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 49.5
+offset_right = 312.0
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7118w")
+text = "QUIT"
+
+[node name="Controls" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 153.5
+offset_right = 312.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7118w")
+text = "CONTROLS"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(940, 94)
+scale = Vector2(0.127288, 0.106471)
+texture = ExtResource("4_3m5lr")
+
+[node name="menumusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6geiu")
+autoplay = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]

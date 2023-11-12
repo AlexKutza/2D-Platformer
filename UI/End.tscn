@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdiakqgw0xtu1"]
+
+[ext_resource type="Texture2D" uid="uid://6ssh6shuvni2" path="res://Assets/Worm.png" id="1_1p5ny"]
+[ext_resource type="FontFile" uid="uid://cfh80aue23hb8" path="res://UI/theme.tres" id="2_eegnv"]
+[ext_resource type="Texture2D" uid="uid://dw5h8c0l2egye" path="res://Assets/Untitled-Artwork (39).png" id="3_slc5n"]
+[ext_resource type="Texture2D" uid="uid://b6pfdwjlo4vy8" path="res://Assets/jewel.png" id="4_8ott2"]
+[ext_resource type="AudioStream" uid="uid://cl2afs1epnod8" path="res://Assets/menu.wav" id="5_yekh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ccku"]
+atlas = ExtResource("1_1p5ny")
+region = Rect2(0, 0, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c76ix"]
+atlas = ExtResource("1_1p5ny")
+region = Rect2(666, 0, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0338h"]
+atlas = ExtResource("1_1p5ny")
+region = Rect2(1332, 0, 666, 666)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6wuk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ccku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c76ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0338h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_46wdg"]
+default_font_size = 100
+Label/fonts/font = ExtResource("2_eegnv")
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 657.0
+color = Color(0.321569, 0.129412, 0.34902, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(245, 406)
+scale = Vector2(0.573574, 0.573574)
+sprite_frames = SubResource("SpriteFrames_c6wuk")
+autoplay = "default"
+frame_progress = 0.313941
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -314.0
+offset_top = -283.5
+offset_right = 314.0
+offset_bottom = -100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_46wdg")
+text = "YOU ESCAPED!"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(935, 499)
+scale = Vector2(0.1, 0.1)
+amount = 16
+lifetime = 4.0
+speed_scale = 0.5
+texture = ExtResource("3_slc5n")
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 914.89
+initial_velocity_max = 914.89
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+anim_speed_min = 10.0
+anim_speed_max = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(941, 463)
+texture = ExtResource("4_8ott2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(718, 545)
+scale = Vector2(0.583333, 0.583333)
+texture = ExtResource("4_8ott2")
+
+[node name="menumusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yekh3")
+autoplay = true

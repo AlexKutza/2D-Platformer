@@ -1,69 +1,83 @@
-[gd_scene load_steps=18 format=3 uid="uid://oamnqdpkpf7b"]
+[gd_scene load_steps=25 format=3 uid="uid://oamnqdpkpf7b"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_2l1k3"]
-[ext_resource type="Texture2D" uid="uid://6ssh6shuvni2" path="res://Assets/Worm.png" id="2_6q383"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_qjlsq"]
+[ext_resource type="Texture2D" uid="uid://6ssh6shuvni2" path="res://Assets/Worm.png" id="2_oloeu"]
+[ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="3_n1n2m"]
+[ext_resource type="Script" path="res://StateMachine/Idle.gd" id="4_v43mp"]
+[ext_resource type="Script" path="res://StateMachine/Moving.gd" id="5_bs4qc"]
+[ext_resource type="Script" path="res://StateMachine/Jumping.gd" id="6_2mpwd"]
+[ext_resource type="Script" path="res://StateMachine/Moving_and_Jumping.gd" id="6_wy5pj"]
+[ext_resource type="Script" path="res://StateMachine/Falling.gd" id="7_8v1np"]
+[ext_resource type="Script" path="res://StateMachine/Coyote.gd" id="8_gi0l0"]
+[ext_resource type="Script" path="res://StateMachine/Attacking.gd" id="9_wpuur"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b64l4"]
-atlas = ExtResource("2_6q383")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iofr"]
+atlas = ExtResource("2_oloeu")
+region = Rect2(3330, 666, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g117"]
+atlas = ExtResource("2_oloeu")
+region = Rect2(0, 1332, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1kk6"]
+atlas = ExtResource("2_oloeu")
+region = Rect2(1998, 666, 666, 666)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sixil"]
+atlas = ExtResource("2_oloeu")
 region = Rect2(2664, 666, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_003u2"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(0, 0, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43fn5"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(0, 666, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a1u0"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(666, 666, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6l7l"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(1332, 666, 666, 666)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d07ok"]
-atlas = ExtResource("2_6q383")
-region = Rect2(1998, 666, 666, 666)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_obgn8"]
-atlas = ExtResource("2_6q383")
-region = Rect2(2664, 666, 666, 666)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tvagu"]
-atlas = ExtResource("2_6q383")
-region = Rect2(3330, 666, 666, 666)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p261n"]
-atlas = ExtResource("2_6q383")
-region = Rect2(0, 1332, 666, 666)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10k1j"]
-atlas = ExtResource("2_6q383")
-region = Rect2(666, 1332, 666, 666)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hn8pt"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(0, 0, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvyc0"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(666, 0, 666, 666)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kso6"]
-atlas = ExtResource("2_6q383")
+atlas = ExtResource("2_oloeu")
 region = Rect2(1332, 0, 666, 666)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wa2gt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b64l4")
+"texture": SubResource("AtlasTexture_2iofr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g117")
 }],
-"loop": true,
-"name": &"Fall",
-"speed": 5.0
+"loop": false,
+"name": &"Attacking",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1kk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sixil")
+}],
+"loop": false,
+"name": &"Falling",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -82,24 +96,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p6l7l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d07ok")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_obgn8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tvagu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p261n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10k1j")
 }],
 "loop": false,
-"name": &"Jump",
+"name": &"Jumping",
 "speed": 10.0
 }, {
 "frames": [{
@@ -113,21 +112,77 @@ animations = [{
 "texture": SubResource("AtlasTexture_0kso6")
 }],
 "loop": true,
-"name": &"Walk",
+"name": &"Moving",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4ctt"]
 size = Vector2(350, 248)
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_2l1k3")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3amok"]
+size = Vector2(370, 268)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qjlsq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wa2gt")
-animation = &"Fall"
+animation = &"Attacking"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 10)
 shape = SubResource("RectangleShape2D_o4ctt")
+
+[node name="Attack" type="RayCast2D" parent="."]
+target_position = Vector2(256, 34)
+collision_mask = 3
+
+[node name="Attack_low" type="RayCast2D" parent="."]
+position = Vector2(0, 100)
+target_position = Vector2(7, 96)
+
+[node name="Coin_Collector" type="Area2D" parent="."]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin_Collector"]
+position = Vector2(-2, 12)
+shape = SubResource("RectangleShape2D_3amok")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_n1n2m")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_v43mp")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("5_bs4qc")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_2mpwd")
+
+[node name="Moving_and_Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_wy5pj")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("7_8v1np")
+
+[node name="Coyote" type="Node" parent="StateMachine"]
+script = ExtResource("8_gi0l0")
+
+[node name="Timer" type="Timer" parent="StateMachine/Coyote"]
+wait_time = 0.2
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("9_wpuur")
+
+[node name="Timer" type="Timer" parent="StateMachine/Attacking"]
+wait_time = 0.12
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Coin_Collector" to="." method="_on_coin_collector_body_entered"]
+[connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Attacking/Timer" to="StateMachine/Attacking" method="_on_timer_timeout"]
